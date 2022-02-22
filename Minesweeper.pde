@@ -24,10 +24,13 @@ void setup ()
 }
 public void setMines()
 {
+    while(mines.size()<15){
     int r=(int)(Math.random()*NUM_ROWS);
     int c=(int)(Math.random()*NUM_COLS);
-    mines.add(buttons[r][c]);
-    System.out.println(r+", "+c);
+    if(!mines.contains(buttons[r][c])){
+      mines.add(buttons[r][c]);
+      System.out.println(r+", "+c);}
+    }
 }
 
 public void draw ()
@@ -114,3 +117,13 @@ public class MSButton
         return flagged;
     }
 }
+
+
+/*
+char is b
+number is 2
+
+unnecessary in the first and third use
+*/
+
+
