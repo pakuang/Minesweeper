@@ -1,14 +1,16 @@
 import de.bezier.guido.*;
 
-public final static int NUM_ROWS = 3;
-public final static int NUM_COLS = 3;
-public final static int NUM_MINES = 2;
+public final static int NUM_ROWS = 40;
+public final static int NUM_COLS = 40;
+public final static int NUM_MINES = 150;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines; //ArrayList of just the minesweeper buttons that are mined
 public int nonMineClicked=0;
+public int screenWidthh=600;
+public int screenHeightt=600;
 void setup ()
 {
-    size(800, 800);
+    size(600, 600);
     textAlign(CENTER,CENTER);
     
     // make the manager
@@ -52,10 +54,24 @@ public boolean isWon()
 public void displayLosingMessage()
 {
     System.out.println("YOU LOST");
+    String[] message = {"Y","O","U","","L","O","S","T","!"};
+    int colStart=NUM_COLS/2-4;
+    int row= NUM_ROWS/2;
+    for(int col=colStart;col<colStart+message.length;col++){
+      buttons[row][col].setLabel(message[col-colStart]);
+    }
+    
+    
 }
 public void displayWinningMessage()
 {
     System.out.println("YOU WON");
+    String[] message = {"Y","O","U","","W","O","N","!"};
+    int colStart=NUM_COLS/2-4;
+    int row= NUM_ROWS/2;
+    for(int col=colStart;col<colStart+message.length;col++){
+      buttons[row][col].setLabel(message[col-colStart]);
+    }
 }
 public boolean isValid(int r, int c)
 {
@@ -82,8 +98,8 @@ public class MSButton
     
     public MSButton ( int row, int col )
     {
-        width = 800/NUM_COLS;
-        height = 800/NUM_ROWS;
+        width = 600/NUM_COLS;
+        height = 600/NUM_ROWS;
         myRow = row;
         myCol = col; 
         x = myCol*width;
@@ -142,3 +158,4 @@ public class MSButton
         return flagged;
     }
 }
+
